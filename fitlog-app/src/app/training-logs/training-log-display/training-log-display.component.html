@@ -1,0 +1,107 @@
+<div class="row">
+  <div class="col-12 text-center">
+    <strong>Title</strong>
+  </div>
+</div>
+<div *ngIf="trainingLogs.length > 0">
+  <mat-accordion *ngFor="let trainingLog of trainingLogs">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        {{ trainingLog.trainingDate }}
+      </mat-expansion-panel-header>
+      <div *ngFor="let exercise of trainingLog.exercises">
+        <div class="row">
+          <div class="col-2">
+            <label>Exercise Name: </label>
+            {{ exercise.name }}
+          </div>
+          <div class="col-1">
+            <label>Set 1: </label>
+            {{ exercise.set1 }}
+          </div>
+          <div class="col-1">
+            <label>Set 2: </label>
+            {{ exercise.set2 }}
+          </div>
+          <div class="col-1">
+            <label>Set 3: </label>
+            {{ exercise.set3 }}
+          </div>
+          <div class="col-1">
+            <label>Set 4: </label>
+            {{ exercise.set4 }}
+          </div>
+          <div class="col-1">
+            <label>Set 5: </label>
+            {{ exercise.set5 }}
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-3">
+          Comments:
+        </div>
+        <div class="col-9">
+          {{ trainingLog.comments }}
+        </div>
+      </div>
+      <!-- <table class="table table-borderless" *ngFor="let trainingLog of trainingLogs">
+        <thead>
+          <tr>
+            <th scope='col'><strong>Training Date:</strong></th>
+            <th scope='col'>{{ trainingLog.trainingDate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="4">
+              <table class="table table-bordered table-nested">
+                <thead>
+                  <tr>
+                    <th scope='col'>Exercise Name</th>
+                    <th scope='col'>Set 1</th>
+                    <th scope='col'>Set 2</th>
+                    <th scope='col'>Set 3</th>
+                    <th scope='col'>Set 4</th>
+                    <th scope='col'>Set 5</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let exercise of trainingLog.exercises">
+                  <tr>
+                    <th scope='row'>{{ exercise.name }}</th>
+                    <td>{{ exercise.set1 }}</td>
+                    <td>{{ exercise.set2 }}</td>
+                    <td>{{ exercise.set3 }}</td>
+                    <td>{{ exercise.set4 }}</td>
+                    <td>{{ exercise.set5 }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <th scope='col'><strong>Comments:</strong></th>
+            <td scope='col'>{{ trainingLog.comments }}</td>
+          </tr>
+        </tbody>
+      </table> -->
+      <mat-action-row>
+        <button
+          mat-raised-button
+          color="basic"
+          type="button">
+            Edit
+        </button>
+        <button
+          mat-raised-button
+          color="basic"
+          type="button">
+            Delete
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<p class="info-text text-center" *ngIf="trainingLogs.length <= 0"><strong>No training logs yet!</strong></p>
+

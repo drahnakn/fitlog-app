@@ -1,0 +1,136 @@
+<div class="container">
+  <form [formGroup]="trainingForm" (submit)="onSubmit()">
+    <mat-grid-list cols="7" rowHeight="2.5rem">
+      <mat-grid-tile-header>Training Date</mat-grid-tile-header>
+      <mat-grid-tile colspan="1" rowspan="2">
+        <mat-form-field>
+          <input
+            matInput
+            type="date"
+            id="date"
+            name="date"
+            required
+            formControlName="date"
+            class="form-control"/>
+          <mat-error *ngIf="trainingForm.invalid">Please select a training date.</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="container" formArrayName="exercises">
+      <mat-grid-list
+        cols="12"
+        rowHeight="1.5rem"
+        gutterSize="20px">
+        <mat-grid-tile colspan="3" rowspan="1">
+          <label>Exercise Name</label>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          <label>Set 1</label>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          <label>Set 2</label>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          <label>Set 3</label>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          <label>Set 4</label>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1">
+          <label>Set 5</label>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <hr>
+      <mat-grid-list
+        cols="12"
+        rowHeight="1.5rem"
+        gutterSize="20px"
+        *ngFor="let exercise of exercises().controls; let i = index"
+        [formGroupName]="i">
+        <mat-grid-tile colspan="3" rowspan="2">
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"/>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <input
+            type="text"
+            formControlName="set1"
+            class="form-control"/>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <input
+            type="text"
+            formControlName="set2"
+            class="form-control"/>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <input
+            type="text"
+            formControlName="set3"
+            class="form-control"/>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <input
+            type="text"
+            formControlName="set4"
+            class="form-control"/>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2">
+          <input
+            type="text"
+            formControlName="set5"
+            class="form-control"/>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="2">
+          <br />
+          <button
+            mat-raised-button
+            color="warn"
+            type="button"
+            (click)="removeExercise(i)">
+            Remove
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <br />
+      <mat-grid-list cols="1" rowHeight="3rem">
+        <mat-grid-tile colspan="1" rowspan="1">
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            (click)="addExercise()">
+            Add Exercise
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <mat-grid-list cols="1" rowHeight="2.5rem">
+      <mat-grid-tile-header>Comments</mat-grid-tile-header>
+      <mat-grid-tile colspan="1" rowspan="2">
+        <input
+          type="text"
+          id="comments"
+          name="comments"
+          formControlName="comments"
+          class="form-control"/>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <br />
+    <mat-grid-list cols="1" rowHeight="3rem">
+      <mat-grid-tile colspan="1" rowspan="1">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit">
+          Save
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  <br />
+  <hr>
+</div>
+
