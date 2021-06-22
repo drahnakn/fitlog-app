@@ -20,7 +20,6 @@ export class TrainingLogDisplayComponent implements OnInit, OnDestroy {
   constructor(public trainingLogsService: TrainingLogsService) {}
 
   onSearch(requestedTainingDate: HTMLInputElement) {
-    // const requestedTrainingDate = new Date(`${requestedTainingDate.value} 07:00:00`).toLocaleDateString();
     this.trainingDate = new Date(`${requestedTainingDate.value} 07:00:00`).toLocaleDateString();
     const filteredTrainingLogs = this.trainingLogs.filter(trainingLog => trainingLog.trainingDate === this.trainingDate);
     if (filteredTrainingLogs.length > 0) {

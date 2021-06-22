@@ -23,6 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { SignInComponent } from "./auth/sign-in/sign-in.component";
 import { SignUpComponent } from "./auth/sign-up/sign-up.component";
+import { ErrorComponent } from './error/error.component';
+import { ErrorInterceptor } from "./error-interceptor"
 import { HeaderComponent } from './header/header.component'
 import { TrainingLogCreateComponent } from './training-logs/training-log-create/training-log-create.component';
 import {
@@ -35,6 +37,7 @@ import { TrainingLogDisplayComponent } from './training-logs/training-log-displa
 @NgModule({
   declarations: [
     AppComponent,
+    ErrorComponent,
     HeaderComponent,
     SignInComponent,
     SignUpComponent,
@@ -59,8 +62,12 @@ import { TrainingLogDisplayComponent } from './training-logs/training-log-displa
     MatToolbarModule,
     ReactiveFormsModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }

@@ -42,23 +42,6 @@ export class TrainingLogsService {
       });
   }
 
-  updateTrainingLog(
-    trainingLogid: string,
-    trainingDate: string,
-    exercises: [
-      {name: string; set1: number; set2: number; set3: number; set4: number; set5: number}
-    ],
-    comments: string) {
-      const trainingLog: TrainingLog = {
-        _id: trainingLogid,
-        trainingDate: trainingDate,
-        exercises: exercises,
-        comments: comments
-      };
-      this.http.put("http://localhost:3000/trainingLogs/" + trainingLogid, trainingLog)
-        .subscribe(response => {console.log(response)});
-    }
-
   getTrainingLogUpdateListener() {
     return this.trainingLogsUpdated.asObservable();
   }
@@ -70,10 +53,6 @@ export class TrainingLogsService {
         this.trainingLogs = trainingLogData.trainingLogs;
         this.trainingLogsUpdated.next([...this.trainingLogs]);
       });
-  }
-
-  getTrainingLog(id: string) {
-    return {...this.trainingLogs.find(trainingLog => trainingLog._id === id)};
   }
 
 }
