@@ -1,7 +1,30 @@
-const bodyParser = require("body-parser");
 const express = require("express");
-const { extend } = require("jquery");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const traingLogRoutes = require("./routes/trainingLogs");
+const userRoutes = require("./routes/user");
+
 const app = express();
+
+// mongoose.connect("mongodb+srv://ndrahnak:FNJItjAMrRjRgj9Y@fitlog.jlwif.mongodb.net/fitlog-app?retryWrites=true&w=majority")
+//   .then(() => {
+//     console.log('Connected to database!');
+//   })
+//   .catch(() => {
+//     console.log('Connection failed!');
+//   });
+
+mongoose.connect("mongodb://localhost:27017/fitlog-app", {useNewUrlParser: true})
+  .then(() => {
+    console.log('Connected to database!');
+  })
+  .catch(() => {
+    console.log('Connection failed!');
+  });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -10,47 +33,14 @@ app.use((req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   res.setHeader(
-      "Access-Control-Allow-Methods",
-      "GET, POST, PATCH, DELETE, OPTIONS"
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
   );
   next();
-})
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.post("/trainingLogs", (req, res, next) => {
-  const trainingLog = req.body;
-  console.log(trainingLog);
-  res.status(201).json({
-    message: "Training log added successfully!"
-  });
 });
 
-app.use("/trainingLogs", (req, res, next) => {
-  const trainingLogs = [
-    {
-      _id: "testIdOne",
-      trainingDate: "6/20/2021",
-      exercises: [
-        { name: "Push Up", set1: 10, set2: 10, set3: 5, set4: 1, set5: 0 }
-      ],
-      comments: "Broke my push up record today!"
-    },
-    {
-      _id: "testIdTwo",
-      trainingDate: "6/19/2021",
-      exercises: [
-        { name: "Push Up", set1: 10, set2: 10, set3: 3, set4: 0, set5: 0 },
-        { name: "Squat", set1: 10, set2: 10, set3: 2, set4: 1, set5: 0 }
-      ],
-      comments: "Knees were a little achy today."
-    }
-  ];
-  res.status(200).json({
-    message: "Training Logs fetched successfully.",
-    trainingLogs: trainingLogs
-  });
-});
+app.use("/trainingLogs", traingLogRoutes);
+app.use("/user", userRoutes);
 
 module.exports = app;
+

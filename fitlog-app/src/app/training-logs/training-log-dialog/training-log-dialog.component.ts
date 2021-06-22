@@ -21,7 +21,7 @@ export class TrainingLogDialogComponent {
 }
 
 @Component({
-  selector: 'app-training-log-dialog-modal',
+  selector: 'app-training-log-dialog-',
   templateUrl: './training-log-dialog-modal.component.html'
 })
 export class TrainingLogDialogModalComponent {
@@ -29,7 +29,7 @@ export class TrainingLogDialogModalComponent {
     public dialogRef: MatDialogRef<TrainingLogDialogModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 
-    onSaveClick(): void {
+    onCloseClick(): void {
       this.dialogRef.close();
     }
 }

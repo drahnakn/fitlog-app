@@ -19,6 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { SignInComponent } from "./auth/sign-in/sign-in.component";
+import { SignUpComponent } from "./auth/sign-up/sign-up.component";
 import { HeaderComponent } from './header/header.component'
 import { TrainingLogCreateComponent } from './training-logs/training-log-create/training-log-create.component';
 import {
@@ -28,16 +31,20 @@ import {
 import { TrainingLogDisplayComponent } from './training-logs/training-log-display/training-log-display.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    SignInComponent,
+    SignUpComponent,
     TrainingLogCreateComponent,
     TrainingLogDialogComponent,
     TrainingLogDialogModalComponent,
     TrainingLogDisplayComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,

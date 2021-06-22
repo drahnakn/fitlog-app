@@ -1,15 +1,125 @@
-<div class="row">
-  <div class="col-12 text-center">
-    <strong>Title</strong>
-  </div>
-</div>
-<div *ngIf="trainingLogs.length > 0">
-  <mat-accordion *ngFor="let trainingLog of trainingLogs">
+<form>
+  <mat-grid-list cols="12" rowHeight="2.5rem">
+    <mat-grid-tile colspan="4" rowspan="1">
+      <label><strong>What would you like to do?</strong></label>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="onSearch(trainingDate)">
+          Search Sessions
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <mat-form-field>
+        <input
+          matInput
+          type="date"
+          name="date"
+          ngModel
+          #trainingDate />
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">
+      <app-training-log-dialog></app-training-log-dialog>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+<hr>
+<!-- <div *ngIf="trainingDate === null">
+  <mat-grid-list cols="12" rowHeight="2.5rem">
+    <mat-grid-tile colspan="3" rowspan="1">
+      <input
+        matInput
+        type="date"
+        #trainingDate />
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">
+      <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onSearch(trainingDate)">
+          Search
+        </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div> -->
+
+<!-- <div *ngIf="trainingLog === null">
+  <mat-grid-list
+    cols="12"
+    rowHeight="3rem"
+    gutterSize="20px">
+    <mat-grid-tile colspan="3" rowspan="1">
+      <label><strong>Would you like to log a new training session?</strong></label>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">
+      <app-training-log-dialog></app-training-log-dialog>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div> -->
+<!-- <div *ngIf="trainingLog !== null">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th scope='col'><strong>Training Date:</strong></th>
+        <th scope='col'>{{ trainingLog.trainingDate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="4">
+          <table class="table table-bordered table-nested">
+            <thead>
+              <tr>
+                <th scope='col'>Exercise Name</th>
+                <th scope='col'>Set 1</th>
+                <th scope='col'>Set 2</th>
+                <th scope='col'>Set 3</th>
+                <th scope='col'>Set 4</th>
+                <th scope='col'>Set 5</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let exercise of trainingLog.exercises">
+              <tr>
+                <th scope='row'>{{ exercise.name }}</th>
+                <td>{{ exercise.set1 }}</td>
+                <td>{{ exercise.set2 }}</td>
+                <td>{{ exercise.set3 }}</td>
+                <td>{{ exercise.set4 }}</td>
+                <td>{{ exercise.set5 }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <th scope='col'><strong>Comments:</strong></th>
+        <td scope='col'>{{ trainingLog.comments }}</td>
+      </tr>
+    </tbody>
+  </table>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="onDelete(trainingLog._id)">
+        Delete
+    </button>
+</div> -->
+
+
+
+<div *ngIf="trainingLog !== null">
+  <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         {{ trainingLog.trainingDate }}
       </mat-expansion-panel-header>
-      <div *ngFor="let exercise of trainingLog.exercises">
+      <!-- <div *ngFor="let exercise of trainingLog.exercises">
         <div class="row">
           <div class="col-2">
             <label>Exercise Name: </label>
@@ -36,8 +146,8 @@
             {{ exercise.set5 }}
           </div>
         </div>
-      </div>
-      <br />
+      </div> -->
+      <!-- <br />
       <div class="row">
         <div class="col-3">
           Comments:
@@ -45,8 +155,8 @@
         <div class="col-9">
           {{ trainingLog.comments }}
         </div>
-      </div>
-      <!-- <table class="table table-borderless" *ngFor="let trainingLog of trainingLogs">
+      </div> -->
+      <table class="table table-borderless">
         <thead>
           <tr>
             <th scope='col'><strong>Training Date:</strong></th>
@@ -85,23 +195,17 @@
             <td scope='col'>{{ trainingLog.comments }}</td>
           </tr>
         </tbody>
-      </table> -->
+      </table>
       <mat-action-row>
         <button
           mat-raised-button
-          color="basic"
-          type="button">
-            Edit
-        </button>
-        <button
-          mat-raised-button
-          color="basic"
-          type="button">
+          color="primary"
+          type="button"
+          (click)="onDelete(trainingLog._id)">
             Delete
         </button>
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
-<p class="info-text text-center" *ngIf="trainingLogs.length <= 0"><strong>No training logs yet!</strong></p>
 

@@ -9,7 +9,10 @@ import { TrainingLogsService } from '../training-logs.service';
 export class TrainingLogCreateComponent {
   trainingForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public trainingLogsService: TrainingLogsService) {
+  constructor(
+    private fb: FormBuilder,
+    public trainingLogsService: TrainingLogsService,
+  ) {
     this.trainingForm = this.fb.group({
       date: '',
       exercises: this.fb.array([]),
@@ -53,5 +56,6 @@ export class TrainingLogCreateComponent {
     this.trainingForm.get('exercises').value,
     this.trainingForm.get('comments').value);
     this.trainingForm.reset();
+    console.log(localStorage.getItem("currentUser"));
   }
 }

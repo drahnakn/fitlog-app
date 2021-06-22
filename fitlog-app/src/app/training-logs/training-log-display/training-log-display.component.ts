@@ -10,21 +10,47 @@ import { TrainingLogsService } from '../training-logs.service'
   styleUrls: ['./training-log-display.component.css']
 })
 export class TrainingLogDisplayComponent implements OnInit, OnDestroy {
-
+  trainingDate: string = null;
   trainingLogs: TrainingLog[] = [];
+  trainingLog: TrainingLog = null;
+
+  displayMessage: string = "";
   private trainingLogsSubscription: Subscription;
 
   constructor(public trainingLogsService: TrainingLogsService) {}
 
+  onSearch(trainingDate: HTMLInputElement) {
+    this.trainingDate = new Date(`${trainingDate.value} 07:00:00`).toLocaleDateString();
+    const requestedTrainingDate = new Date(`${trainingDate.value} 07:00:00`).toLocaleDateString();
+    const filteredTrainingLogs = this.trainingLogs.filter(trainingLog => trainingLog.trainingDate === requestedTrainingDate);
+    if (filteredTrainingLogs.length > 0) {
+      this.trainingLog = filteredTrainingLogs[0];
+    } else {
+      this.trainingLog = null;
+    }
+    this.setDisplayMessage(this.trainingDate);
+    console.log(this.trainingDate);
+    console.log(localStorage.getItem("currentUser"));
+  }
+
   ngOnInit() {
     this.trainingLogsService.getTrainingLogs();
-    this.trainingLogsSubscription = this.trainingLogsService.getTrainingLOgUpdateListener()
-      .subscribe((trainingLogs: TrainingLog[]) =>{
+    this.trainingLogsSubscription = this.trainingLogsService.getTrainingLogUpdateListener()
+      .subscribe((trainingLogs: TrainingLog[]) => {
         this.trainingLogs = trainingLogs;
       });
   }
 
   ngOnDestroy() {
     this.trainingLogsSubscription.unsubscribe();
+  }
+
+  onDelete(postId: string) {
+    this.trainingLogsService.deleteTrainingLog(postId);
+    this.trainingLog = null;
+  }
+
+  setDisplayMessage(trainingDate: string) {
+    this.displayMessage = "Would you like to add a training session for " + trainingDate + "?";
   }
 }

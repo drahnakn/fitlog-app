@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from "@angular/router";
 import { Subject } from 'rxjs';
 import { TrainingLog } from "./training-log.model";
 
@@ -8,9 +9,10 @@ export class TrainingLogsService {
   private trainingLogs: TrainingLog[] = [];
   private trainingLogsUpdated = new Subject<TrainingLog[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  addTrainingLog(trainingDate: string,
+  addTrainingLog(
+    trainingDate: string,
     exercises: [
       {name: string; set1: number; set2: number; set3: number; set4: number; set5: number}
     ],
@@ -21,16 +23,43 @@ export class TrainingLogsService {
       exercises: exercises,
       comments: comments
     }
-    this.http.post<{message: string}>("http://localhost:3000/trainingLogs", trainingLog)
+    this.http.post<{ message: string, trainingLogId: string }>("http://localhost:3000/trainingLogs", trainingLog)
       .subscribe((responseData) => {
-        console.log(responseData.message);
+        const id = responseData.trainingLogId;
+        trainingLog._id = id;
         this.trainingLogs.push(trainingLog);
         this.trainingLogsUpdated.next([...this.trainingLogs]);
+        this.router.navigate(["/display"]);
       });
-
   }
 
-  getTrainingLOgUpdateListener() {
+  deleteTrainingLog(trainingLogId: string) {
+    this.http.delete("http://localhost:3000/trainingLogs/" + trainingLogId)
+      .subscribe(() => {
+        const updatedTrainingLogs = this.trainingLogs.filter(trainingLog => trainingLog._id !== trainingLogId);
+        this.trainingLogs = updatedTrainingLogs;
+        this.trainingLogsUpdated.next([...this.trainingLogs]);
+      });
+  }
+
+  updateTrainingLog(
+    trainingLogid: string,
+    trainingDate: string,
+    exercises: [
+      {name: string; set1: number; set2: number; set3: number; set4: number; set5: number}
+    ],
+    comments: string) {
+      const trainingLog: TrainingLog = {
+        _id: trainingLogid,
+        trainingDate: trainingDate,
+        exercises: exercises,
+        comments: comments
+      };
+      this.http.put("http://localhost:3000/trainingLogs/" + trainingLogid, trainingLog)
+        .subscribe(response => {console.log(response)});
+    }
+
+  getTrainingLogUpdateListener() {
     return this.trainingLogsUpdated.asObservable();
   }
 
@@ -40,6 +69,10 @@ export class TrainingLogsService {
         this.trainingLogs = trainingLogData.trainingLogs;
         this.trainingLogsUpdated.next([...this.trainingLogs]);
       });
+  }
+
+  getTrainingLog(id: string) {
+    return {...this.trainingLogs.find(trainingLog => trainingLog._id === id)};
   }
 
 }

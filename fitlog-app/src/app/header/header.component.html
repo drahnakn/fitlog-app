@@ -1,6 +1,34 @@
-<nav class="navbar navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
     <span class="navbar-brand mb-0 h1">FitLog</span>
   </div>
-</nav>
-<mat-toolbar>FitLog</mat-toolbar>
+</nav> -->
+<mat-toolbar>
+  <span>FitLog</span>
+  <span class="spacing"></span>
+  <span>
+    <a
+      mat-raised-button
+      routerLink="/display"
+      routerLinkActive="mat-primary">
+        Training
+    </a>
+  </span>
+  <span>
+    <a
+      mat-raised-button
+      routerLink="/signin"
+      routerLinkActive="mat-primary">
+        Sign In
+    </a>
+  </span>
+  <span>
+    <a
+      mat-raised-button
+      routerLink="/signup"
+      routerLinkActive="mat-primary">
+        Sign Up
+    </a>
+  </span>
+
+</mat-toolbar>
