@@ -19,18 +19,16 @@ export class TrainingLogDisplayComponent implements OnInit, OnDestroy {
 
   constructor(public trainingLogsService: TrainingLogsService) {}
 
-  onSearch(trainingDate: HTMLInputElement) {
-    this.trainingDate = new Date(`${trainingDate.value} 07:00:00`).toLocaleDateString();
-    const requestedTrainingDate = new Date(`${trainingDate.value} 07:00:00`).toLocaleDateString();
-    const filteredTrainingLogs = this.trainingLogs.filter(trainingLog => trainingLog.trainingDate === requestedTrainingDate);
+  onSearch(requestedTainingDate: HTMLInputElement) {
+    // const requestedTrainingDate = new Date(`${requestedTainingDate.value} 07:00:00`).toLocaleDateString();
+    this.trainingDate = new Date(`${requestedTainingDate.value} 07:00:00`).toLocaleDateString();
+    const filteredTrainingLogs = this.trainingLogs.filter(trainingLog => trainingLog.trainingDate === this.trainingDate);
     if (filteredTrainingLogs.length > 0) {
       this.trainingLog = filteredTrainingLogs[0];
     } else {
       this.trainingLog = null;
     }
     this.setDisplayMessage(this.trainingDate);
-    console.log(this.trainingDate);
-    console.log(localStorage.getItem("currentUser"));
   }
 
   ngOnInit() {

@@ -66,6 +66,7 @@ export class TrainingLogsService {
   getTrainingLogs() {
     this.http.get<{message: string, trainingLogs: TrainingLog[]}>('http://localhost:3000/trainingLogs')
       .subscribe((trainingLogData) => {
+        console.log(trainingLogData);
         this.trainingLogs = trainingLogData.trainingLogs;
         this.trainingLogsUpdated.next([...this.trainingLogs]);
       });

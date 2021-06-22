@@ -35,7 +35,8 @@ router.post("/signin", (req,res, next) => {
           message: "User does not exist!"
         });
       }
-      return bcrypt.compare(req.body.password, user.password)
+      fetchedUser = user;
+      return bcrypt.compare(req.body.password, user.password);
     })
     .then(result => {
       if(!result) {
@@ -43,12 +44,10 @@ router.post("/signin", (req,res, next) => {
           message: "Auth failed"
         });
       }
-      const token = jwt.sign({
-        email: user.email,
-        userId: user._id},
+      const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id},
         "this_is_where_a_long_secret_should_go",
         { expiresIn: "1h" });
-      res.status(200).json({ token: token });
+      res.status(200).json({ token: token, expiresIn: 3600, userId: fetchedUser._id });
     })
     .catch(err => {
       return res.status(401).json({

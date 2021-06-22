@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
           NgModule,
           NO_ERRORS_SCHEMA
@@ -20,6 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthInterceptor } from './auth/auth-interceptor';
 import { SignInComponent } from "./auth/sign-in/sign-in.component";
 import { SignUpComponent } from "./auth/sign-up/sign-up.component";
 import { HeaderComponent } from './header/header.component'
@@ -29,7 +30,6 @@ import {
           TrainingLogDialogModalComponent
        } from './training-logs/training-log-dialog/training-log-dialog.component';
 import { TrainingLogDisplayComponent } from './training-logs/training-log-display/training-log-display.component';
-
 
 
 @NgModule({
@@ -59,7 +59,7 @@ import { TrainingLogDisplayComponent } from './training-logs/training-log-displa
     MatToolbarModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })

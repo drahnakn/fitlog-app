@@ -15,7 +15,7 @@ const app = express();
 //     console.log('Connection failed!');
 //   });
 
-mongoose.connect("mongodb://localhost:27017/fitlog-app", {useNewUrlParser: true})
+mongoose.connect("mongodb://localhost:27017/fitlog-app", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to database!');
   })
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",

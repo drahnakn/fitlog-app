@@ -6,7 +6,7 @@
 <mat-toolbar>
   <span>FitLog</span>
   <span class="spacing"></span>
-  <span>
+  <span *ngIf="userIsAuthenticated">
     <a
       mat-raised-button
       routerLink="/display"
@@ -14,7 +14,7 @@
         Training
     </a>
   </span>
-  <span>
+  <span *ngIf="!userIsAuthenticated">
     <a
       mat-raised-button
       routerLink="/signin"
@@ -22,12 +22,19 @@
         Sign In
     </a>
   </span>
-  <span>
+  <span *ngIf="userIsAuthenticated">
+    <button
+      mat-raised-button
+      (click)="onSignOut()">
+        Sign Out
+    </button>
+  </span>
+  <span *ngIf="!userIsAuthenticated">
     <a
       mat-raised-button
       routerLink="/signup"
       routerLinkActive="mat-primary">
-        Sign Up
+        New User
     </a>
   </span>
 

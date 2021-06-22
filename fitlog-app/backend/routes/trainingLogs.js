@@ -9,7 +9,8 @@ router.post("", checkAuth, (req, res, next) => {
   const trainingLog = new TrainingLog({
     trainingDate: req.body.trainingDate,
     exercises: req.body.exercises,
-    comments: req.body.comments
+    comments: req.body.comments,
+    createUser: req.userData.userId
   });
   trainingLog.save().then(createdTrainingLog => {
     res.status(201).json({
@@ -33,7 +34,7 @@ router.put("/:id", checkAuth, (req, res, next) => {
 });
 
 router.get("", checkAuth, (req, res, next) => {
-  TrainingLog.find().then(documents => {
+  TrainingLog.find({ createUser: req.userData.userId }).then(documents => {
     res.status(200).json({
       message: "Training Logs fetched successfully.",
       trainingLogs: documents
@@ -54,8 +55,7 @@ router.get("/:id", checkAuth, (req, res, next) => {
 router.delete("/:id", checkAuth, (req, res, next) => {
   TrainingLog.deleteOne({ _id: req.params.id })
     .then(result => {
-      console.log(result);
-      res.status(200).json({ message: "Training log deleted." });
+      res.status(200).json({ message: "Training log deleted!" });
   });
 });
 

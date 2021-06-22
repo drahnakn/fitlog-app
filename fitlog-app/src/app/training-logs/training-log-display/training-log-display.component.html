@@ -8,7 +8,7 @@
         mat-raised-button
         color="primary"
         type="button"
-        (click)="onSearch(trainingDate)">
+        (click)="onSearch(requestedTrainingDate)">
           Search Sessions
       </button>
     </mat-grid-tile>
@@ -19,7 +19,7 @@
           type="date"
           name="date"
           ngModel
-          #trainingDate />
+          #requestedTrainingDate />
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="3" rowspan="1">
@@ -28,6 +28,12 @@
   </mat-grid-list>
 </form>
 <hr>
+<mat-grid-list cols="1" rowHeight="2.5rem">
+  <mat-grid-tile colspan="1" rowspan="1">
+    <p *ngIf="trainingLog === null && trainingDate !== null"><strong>No training sessions found for {{ trainingDate }}</strong></p>
+  </mat-grid-tile>
+</mat-grid-list>
+
 <!-- <div *ngIf="trainingDate === null">
   <mat-grid-list cols="12" rowHeight="2.5rem">
     <mat-grid-tile colspan="3" rowspan="1">

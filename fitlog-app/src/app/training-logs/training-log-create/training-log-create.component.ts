@@ -52,10 +52,6 @@ export class TrainingLogCreateComponent {
       this.trainingForm.get('exercises').value,
       this.trainingForm.get('comments').value
     );
-    console.log(new Date(`${this.trainingForm.get('date').value} 07:00:00`).toLocaleDateString(),
-    this.trainingForm.get('exercises').value,
-    this.trainingForm.get('comments').value);
     this.trainingForm.reset();
-    console.log(localStorage.getItem("currentUser"));
   }
 }
