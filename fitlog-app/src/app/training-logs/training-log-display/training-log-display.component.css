@@ -1,15 +1,16 @@
 :host {
-  display: block;
   margin-top: 1rem;
+  z-index: 2;
 }
 
-mat-accordion {
-  display: block;
-  margin-top: 1rem;
+mat-card {
+  width: 85%;
+  margin: auto;
+  z-index: 2;
 }
 
 .table {
-  width: 85%;
+  width: 95%;
   margin: auto;
 }
 

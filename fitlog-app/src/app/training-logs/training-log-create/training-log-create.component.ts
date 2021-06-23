@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
+import { Component } from "@angular/core";
+import { FormGroup, FormControl, FormArray, FormBuilder } from "@angular/forms";
 
-import { TrainingLogsService } from '../training-logs.service';
+import { TrainingLogsService } from "../training-logs.service";
 @Component({
-  selector: 'app-training-log-create',
-  templateUrl: './training-log-create.component.html'
+  selector: "app-training-log-create",
+  templateUrl: "./training-log-create.component.html"
 })
 export class TrainingLogCreateComponent {
   trainingForm: FormGroup;
@@ -14,24 +14,24 @@ export class TrainingLogCreateComponent {
     public trainingLogsService: TrainingLogsService,
   ) {
     this.trainingForm = this.fb.group({
-      date: '',
+      date: "",
       exercises: this.fb.array([]),
-      comments: ''
+      comments: ""
     });
   }
 
   exercises(): FormArray {
-    return this.trainingForm.get('exercises') as FormArray;
+    return this.trainingForm.get("exercises") as FormArray;
   }
 
   newExercise(): FormGroup {
     return this.fb.group({
-      name: '',
-      set1: '0',
-      set2: '0',
-      set3: '0',
-      set4: '0',
-      set5: '0'
+      name: "",
+      set1: "0",
+      set2: "0",
+      set3: "0",
+      set4: "0",
+      set5: "0"
     });
   }
 
@@ -48,9 +48,9 @@ export class TrainingLogCreateComponent {
       return;
     }
     this.trainingLogsService.addTrainingLog(
-      new Date(`${this.trainingForm.get('date').value} 07:00:00`).toLocaleDateString(),
-      this.trainingForm.get('exercises').value,
-      this.trainingForm.get('comments').value
+      new Date(`${this.trainingForm.get("date").value} 07:00:00`).toLocaleDateString(),
+      this.trainingForm.get("exercises").value,
+      this.trainingForm.get("comments").value
     );
     this.trainingForm.reset();
   }

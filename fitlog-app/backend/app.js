@@ -9,18 +9,18 @@ const app = express();
 
 // mongoose.connect("mongodb+srv://ndrahnak:FNJItjAMrRjRgj9Y@fitlog.jlwif.mongodb.net/fitlog-app?retryWrites=true&w=majority")
 //   .then(() => {
-//     console.log('Connected to database!');
+//     console.log("Connected to database!");
 //   })
 //   .catch(() => {
-//     console.log('Connection failed!');
+//     console.log("Connection failed!");
 //   });
 
 mongoose.connect("mongodb://localhost:27017/fitlog-app", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to database!');
+    console.log("Connected to database!");
   })
   .catch(() => {
-    console.log('Connection failed!');
+    console.log("Connection failed!");
   });
 
 app.use(bodyParser.json());

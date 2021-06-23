@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { Subject } from 'rxjs';
+import { Subject } from "rxjs";
 import { TrainingLog } from "./training-log.model";
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: "root"})
 export class TrainingLogsService {
   private trainingLogs: TrainingLog[] = [];
   private trainingLogsUpdated = new Subject<TrainingLog[]>();
@@ -47,7 +47,7 @@ export class TrainingLogsService {
   }
 
   getTrainingLogs() {
-    this.http.get<{message: string, trainingLogs: TrainingLog[]}>('http://localhost:3000/trainingLogs')
+    this.http.get<{message: string, trainingLogs: TrainingLog[]}>("http://localhost:3000/trainingLogs")
       .subscribe((trainingLogData) => {
         console.log(trainingLogData);
         this.trainingLogs = trainingLogData.trainingLogs;
