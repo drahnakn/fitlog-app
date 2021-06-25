@@ -17,7 +17,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
       authStatus => {
-        // place holder
+        console.log("Sign In");
       }
     );
   }
