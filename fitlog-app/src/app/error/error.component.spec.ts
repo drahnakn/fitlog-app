@@ -1,12 +1,13 @@
-import { AppComponent } from './app.component';
 import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-import { AppModule } from "./app.module";
+import { AppModule } from "../app.module";
+import { ErrorComponent } from "./error.component";
 
-describe('AppComponent', () => {
-  let component: AppComponent;
+describe("ErrorComponent", () => {
+
+  let component: ErrorComponent;
   let debugEl: DebugElement;
-  let fixture: ComponentFixture<AppComponent>;
+  let fixture: ComponentFixture<ErrorComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -14,13 +15,13 @@ describe('AppComponent', () => {
         AppModule
       ]
     }).compileComponents().then(() => {
-      fixture = TestBed.createComponent(AppComponent);
+      fixture = TestBed.createComponent(ErrorComponent);
       component = fixture.componentInstance;
       debugEl = fixture.debugElement;
     });
   }));
 
-  it('should create the component', () => {
+  it("should display the component", () => {
     expect(component).toBeTruthy();
   });
 
