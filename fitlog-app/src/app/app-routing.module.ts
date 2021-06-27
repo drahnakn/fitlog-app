@@ -1,3 +1,5 @@
+//This code defines the various routes that will exist in the application.
+
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 

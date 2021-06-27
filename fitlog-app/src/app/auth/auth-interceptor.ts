@@ -1,3 +1,5 @@
+// This code will intercept http requests to ensure a user has been authenticated.
+
 import { HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 

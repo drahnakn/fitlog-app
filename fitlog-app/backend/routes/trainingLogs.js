@@ -1,3 +1,5 @@
+// This code will create the necessary routes to create, retrieve, and delete training log data into the database.
+
 const express = require("express");
 
 const TrainingLog = require("../models/trainingLog");

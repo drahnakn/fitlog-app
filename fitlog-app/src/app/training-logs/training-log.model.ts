@@ -1,3 +1,5 @@
+// This code defines the structure of the data for a training session.
+
 export interface TrainingLog {
   _id: string;
   trainingDate: string;

@@ -1,3 +1,5 @@
+// This code creates a reactive form to input training session data.  The form will allow a user to add and remove exercises to be saved.
+
 import { Component } from "@angular/core";
 import { FormGroup, FormControl, FormArray, FormBuilder } from "@angular/forms";
 

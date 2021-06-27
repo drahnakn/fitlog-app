@@ -1,3 +1,5 @@
+// This code creates the display component for trainig session data. From here a user can search for and delete existing training sessions.
+
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 

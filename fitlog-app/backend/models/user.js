@@ -1,3 +1,5 @@
+// This code defines the schema for user data needed for signing up and signing into the application.
+
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 

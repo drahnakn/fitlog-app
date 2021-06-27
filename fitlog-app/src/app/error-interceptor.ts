@@ -1,3 +1,5 @@
+// This is the code that will intercept incoming errors to dsiplay on the error dialog component.
+
 import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";

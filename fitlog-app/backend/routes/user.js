@@ -1,3 +1,5 @@
+// This code creates the ncessary routes to create users and retrieve user data for authentication.
+
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");

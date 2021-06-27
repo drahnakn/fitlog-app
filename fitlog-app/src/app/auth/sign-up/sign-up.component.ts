@@ -1,3 +1,5 @@
+// This code is for the sign up component which will accept an email address and a password to create a user to acces the application.
+
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Subscription } from "rxjs";

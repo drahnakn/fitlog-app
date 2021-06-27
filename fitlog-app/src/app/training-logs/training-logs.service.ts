@@ -1,3 +1,5 @@
+// This code creates the service that will be used to add, delete, and retrieve training session data.
+
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";

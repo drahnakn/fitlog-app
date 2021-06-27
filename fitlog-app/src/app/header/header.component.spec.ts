@@ -41,30 +41,7 @@ describe("HeaderComponent", () => {
   it("should display the fitlog brand", () => {
     const brand = debugEl.queryAll((By.css("span")))[0].nativeElement.textContent;
     expect(brand).toBe("FitLog");
-  })
-
-  // it("should display sign in and new user buttons when not authenticated",
-  //   () => {
-  //     console.log("entering test");
-  //     authService.getAuthStatus.and.returnValue(false);
-  //     console.log("Mocked getAuthStatus Successfully.")
-  //     fixture.detectChanges();
-
-  //     const headerButtons = debugEl.queryAll(By.css("a"));
-  //     console.log(headerButtons);
-  //     expect(headerButtons.length).toBe(2);
-
-  //     const firstButton = headerButtons[0].nativeElement.textContent;
-  //     const secondButton = headerButtons[1].nativeElement.textContent;
-  //     console.log(firstButton);
-  //     console.log(secondButton);
-
-  //     expect(firstButton).toBe(" Sign In ");
-  //     expect(secondButton).toBe(" New User ");
-
-  //     authService.getAuthStatusListener.and.returnValue(of(false));
-
-  //   })
+  });
 
 })
 

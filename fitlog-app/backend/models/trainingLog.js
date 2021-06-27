@@ -1,3 +1,5 @@
+// This code defines the schema for training log data.
+
 const mongoose = require("mongoose");
 
 const trainingLogSchema = mongoose.Schema({

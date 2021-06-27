@@ -1,3 +1,5 @@
+// This is the code for the header component that will maintian the brand and will house access to various routes in the application.
+
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 

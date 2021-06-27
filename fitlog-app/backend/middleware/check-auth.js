@@ -1,3 +1,5 @@
+// This code will act as a middleware to ensure a user is authenticated before performing any http requests.
+
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {

@@ -1,10 +1,7 @@
+// This code creates a button component that will be used to access a diaolg component that will house the training log create component.
+
 import {Component, Inject} from "@angular/core";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material/dialog";
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
 
 @Component({
   selector: "app-training-log-dialog",
@@ -27,7 +24,7 @@ export class TrainingLogDialogComponent {
 export class TrainingLogDialogModalComponent {
   constructor(
     public dialogRef: MatDialogRef<TrainingLogDialogModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: {}) {}
 
     onCloseClick(): void {
       this.dialogRef.close();

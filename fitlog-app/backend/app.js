@@ -1,5 +1,6 @@
+// This code is the base code to be used in all http requests.
+
 const express = require("express");
-// const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const traingLogRoutes = require("./routes/trainingLogs");

@@ -1,3 +1,7 @@
+/* This is the auth service that will be responsible for creating a user, authenticating a user during sign in, and ensuring a user will remain authenticated
+in the event of a page reload.
+*/
+
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
